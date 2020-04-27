@@ -5,12 +5,17 @@ using System.ComponentModel.DataAnnotations;
 namespace template.ef.Entities {
   public class category {
 
-    // entity framework by convention create primary key if it were written as "id" instead of "category_id"
+    // [Id or id] like "id" or "ID"
+    // [ClassName][Id or id] like "Categoryid" or "CategoryID" is entity framework convention for 
+    // defining primary key without specifying [key] data annotation or in configuration file  or 
+    // in "OnModelCreating" Overridden method of Context class
 
     //[Key]
-    //public int category_id { get; set; }
-    // [Key] data annotation or a seperate configuration file, as used in this case, 
-    // can be used to specify that its a primary key if it does not fallow framework's convention
+    //public int identifier { get; set; }
+
+    // primary key can be defined using [Key] data annotation or in "OnModelCreating" Overridden 
+    // method of Context class or in a seperate configuration file, as used in this case, can be
+    // used to specify that its a primary key if it does not fallow framework's convention
     public int category_id { get; set; }
 
     [StringLength(50, MinimumLength = 3)]
