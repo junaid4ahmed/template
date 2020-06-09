@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -22,5 +23,7 @@ namespace template.ef.Entities {
     [RegularExpression(@"^[A-Z]+[a-zA-Z''-'\s]*$")]
     public string name { get; set; }
     public string description { get; set; }
+
+    public virtual ICollection<product> products { get; set; }
   }
 }

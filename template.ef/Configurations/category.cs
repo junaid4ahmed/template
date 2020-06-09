@@ -26,6 +26,13 @@ namespace template.ef.Configurations {
       Property(c => c.description)
         .HasMaxLength(128);
 
+      //don't want database to delete all respective products upon defection of a specific category
+      //want to delete all products first and second the category by myself, program 
+      HasMany(sc => sc.products)
+        .WithRequired(p => p.category)
+        .HasForeignKey(p => p.category_id)
+        .WillCascadeOnDelete(false);
+
     }
 
   }
