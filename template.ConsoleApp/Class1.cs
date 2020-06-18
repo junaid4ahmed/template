@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualBasic;
 
@@ -88,6 +89,34 @@ namespace template.ConsoleApp {
       // for the database yet
       foreach (var item in products_and_categories) {
         Console.WriteLine($" { item.Category_id } { item.ProductName }");
+      }
+
+    }
+
+    public static void simple_group(ef.Context _context) {
+
+      // selecting sequence/collection for query expression
+      IQueryable<ef.Entities.product> products =
+        _context.Products;
+      
+      // compiler will inferred the type from select clause, anonymous object 
+      // of the type IQueryable<IGrouping<int, product>>
+      var groups =
+
+        //product for product's collection
+        from product in products
+
+        //grouping products by category_id
+        group product by product.category_id;
+
+      //groups = IQueryable<IGrouping<int, product>>
+      foreach (var group in groups) {
+        Console.WriteLine($"{ group.Key }");
+
+        //item = IGrouping<int, product>
+        foreach (var item in group) {
+          Console.WriteLine($" { item.name }");
+        }
       }
 
     }
