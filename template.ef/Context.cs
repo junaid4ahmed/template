@@ -12,7 +12,7 @@ namespace template.ef {
       Database.SetInitializer<Context>(new Initializer());
 
       // to see what framework is generating for database in console
-      //Database.Log = Console.Write;
+      Database.Log = System.Console.Write;
     }
 
     public DbSet<Entities.category> Categories { get; set; }

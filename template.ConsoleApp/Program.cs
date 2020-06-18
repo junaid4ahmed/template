@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace template.ConsoleApp {
   class Program {
+
+
     static void Main(string[] args) {
+
       Console.Title = "Template.ConsoleApp";
+      // System.Linq.Expressions
 
-      using (template.ef.Context _context = new ef.Context()) {
-        foreach (var item in _context.Products) {
-          Console.WriteLine($"{ item.name }");
-        }
+      using (ef.Context _context = new ef.Context()) {
+
+        class1.simple_query(_context);
+
       }
-
+      Console.WriteLine("");
+      Console.WriteLine($"press any key ...");
       Console.ReadKey();
-
     }
   }
 }
