@@ -47,6 +47,50 @@ namespace template.ConsoleApp {
       }
     }
 
-  }
+    public static void simple_join(ef.Context _context) {
 
+      // selecting sequence/collection for join
+      IQueryable<ef.Entities.category> categories =
+        _context.Categories;
+
+      IQueryable<ef.Entities.product> products =
+        _context.Products;
+
+      // compiler will inferred the type from select clause, anonymous object
+      var products_and_categories =
+
+        // left-side sequence/collection of join
+        from category in categories
+
+        // right-side sequence/collection of join
+        join product in products
+
+        // what property the join is base on
+        on category.category_id equals product.category_id
+
+        // orderby clause to sort or order the selection in select clause 
+        // by some property of the object
+        orderby product.name ascending
+
+        // where clause to filter or limit the output result by some property 
+        // of the object
+        //where product.category_id == 1
+
+        select new {
+          //instead of selecting properties such as category.category_id, 
+          //product.name, selecting whole objects, category and product
+          Category_id = category.category_id,
+          Name = category.name,
+          ProductName = product.name
+        };
+
+      // above query setup will not cause entity framework to generate SQL 
+      // for the database yet
+      foreach (var item in products_and_categories) {
+        Console.WriteLine($" { item.Category_id } { item.ProductName }");
+      }
+
+    }
+
+  }
 }

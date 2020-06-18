@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace template.ConsoleApp {
   class Program {
@@ -13,10 +11,10 @@ namespace template.ConsoleApp {
 
       using (ef.Context _context = new ef.Context()) {
 
-        class1.simple_query(_context);
+        class1.simple_join(_context);
 
       }
-      Console.WriteLine("");
+      Console.WriteLine();
       Console.WriteLine($"press any key ...");
       Console.ReadKey();
     }
