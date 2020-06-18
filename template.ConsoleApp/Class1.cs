@@ -121,5 +121,70 @@ namespace template.ConsoleApp {
 
     }
 
+    public static void simple_into(ef.Context _context) {
+
+      // follow the link for better understading
+      // https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/join-clause
+
+      // associates elements in the left source sequence with one or more 
+      // matching elements in the right side source sequence
+
+      // if no elements from the right source sequence are found to match an element
+      // in the left source, the join clause will produce an empty array for that item
+
+      // have access to object's properties of left-side sequence 
+      // not like GroupBy clause where we have access to only key property 
+      // as a left-side
+
+      IQueryable<ef.Entities.category> categories =
+        _context.Categories;
+
+      IQueryable<ef.Entities.product> products =
+        _context.Products;
+
+      var products_by_category =
+
+        // left-side sequence/collection of join
+        from category in categories
+
+        // right-side sequence/collection of join
+        join product in products
+
+        // common property the join is base on
+        on category.category_id equals product.category_id
+
+        // storing the grouping products into range variable 
+        // "category_related_products" for later access in Select clause 
+        into category_related_products
+
+        // ordering result by category's name
+        orderby category.name
+
+        // filtering by category's name or category's id
+        where category.name == "Pasta" || category.category_id == 2
+
+        // selecting or projecting, desire anonymous object
+        select new {
+
+          // have access to left-side object's properties not 
+          // just primary-key
+          category,
+          _name = category.name,
+
+          // there is a collection of products related to one category
+          _products = category_related_products,
+        };
+
+      foreach (var items in products_by_category) {
+        Console.WriteLine($"{items._name }");
+
+        foreach (var item in items._products) {
+          Console.WriteLine($" { item.name }");
+        }
+      }
+
+    }
+
+
   }
 }
