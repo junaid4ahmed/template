@@ -11,7 +11,7 @@ namespace template.ConsoleApp {
 
       using (ef.Context _context = new ef.Context()) {
 
-        class1.simple_into(_context);
+        class1.simple_query(_context);
 
       }
       Console.WriteLine();

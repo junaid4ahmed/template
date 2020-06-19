@@ -9,10 +9,9 @@ namespace template.ConsoleApp {
     //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/query-keywords
 
     public static void simple_query(ef.Context _context) {
-      IQueryable<ef.Entities.product> collection =
 
-        // you can apply all sort of string and extension methods here
-        _context.Products.Where(f => f.name.Contains("ch"));
+      IQueryable<ef.Entities.product> collection =
+        _context.Products;
 
       //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/implicitly-typed-local-variables
       // compiler will inferred the type from select clause, anonymous object
@@ -25,7 +24,14 @@ namespace template.ConsoleApp {
 
         // where clause to filter or limit the output result by some property 
         // of the object
-        //where product.category_id == 1
+        //where product.category_id == 1 || product.name.Contains("ch")
+
+        // create a range variable using let keyword that will hold the result 
+        // of sub-expression that can be used later in expression
+        let conditions = product.category_id == 1 || product.name.Contains("ch")
+
+        // now where clause is lot short than previous
+        where conditions
 
         // following select statement will create an anonymous object which 
         // contain id, product_id properties as properties and product object, 
