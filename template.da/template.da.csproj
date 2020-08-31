@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EBB4D370-0CEF-4450-9F18-C8954C7EF128}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>template.ConsoleApp</RootNamespace>
-    <AssemblyName>template.ConsoleApp</AssemblyName>
+    <ProjectGuid>{0876AC5B-A211-4DA0-AE7F-41C9CFD7121D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>template.da</RootNamespace>
+    <AssemblyName>template.da</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -49,7 +48,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="Base.cs" />
+    <Compile Include="category.cs" />
+    <Compile Include="product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,12 +58,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\template.da\template.da.csproj">
-      <Project>{0876ac5b-a211-4da0-ae7f-41c9cfd7121d}</Project>
-      <Name>template.da</Name>
-    </ProjectReference>
     <ProjectReference Include="..\template.ef\template.ef.csproj">
-      <Project>{ac22b6b3-f27b-4850-b388-01cbb3be75db}</Project>
+      <Project>{AC22B6B3-F27B-4850-B388-01CBB3BE75DB}</Project>
       <Name>template.ef</Name>
     </ProjectReference>
   </ItemGroup>
